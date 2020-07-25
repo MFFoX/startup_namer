@@ -3,8 +3,11 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+
 import 'package:english_words/english_words.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:recase/recase.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,13 +15,103 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
-      theme: ThemeData(
-        // Add the 3 lines from here...
-        primaryColor: Color.fromRGBO(109, 126, 255, 1),
-      ),
-      home: RandomWords(),
+        title: 'Startup Name Generator',
+        theme: ThemeData(
+          // Add the 3 lines from here...
+          primaryColor: Color.fromRGBO(109, 126, 255, 1),
+        ),
+        home: Scaffold(body: InitialScreen())
+        //home: RandomWords(),
+        );
+  }
+}
+
+class InitialScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final _h1Style = TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 34,
+      height: 1.4,
+      color: Colors.white,
     );
+    final _pStyle = TextStyle(
+      fontWeight: FontWeight.w300,
+      fontSize: 16,
+      height: 1.4,
+      letterSpacing: 0.5,
+      color: Colors.white,
+    );
+
+    return Container(
+        color: Color.fromRGBO(21, 21, 34, 1),
+        child: ListView(
+          children: [
+            Container(
+                padding: const EdgeInsets.only(top: 80),
+                child: SvgPicture.asset('graphics/logo.svg',
+                    semanticsLabel: 'Logo')),
+            Container(
+                padding: const EdgeInsets.only(top: 59, left: 70, right: 70),
+                child: Center(
+                    child: Text("Get paid to give referrals",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.roboto(textStyle: _h1Style)))),
+            Container(
+                padding: const EdgeInsets.only(top: 18, left: 42, right: 42),
+                child: Center(
+                    child: Text(
+                        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.roboto(textStyle: _pStyle)))),
+            Container(
+                padding: const EdgeInsets.only(top: 22, left: 160, right: 160),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Icon(Icons.circle, color: Colors.white, size: 8)
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(Icons.circle, color: Color.fromRGBO(109, 126, 255, 1), size: 8)
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(Icons.circle, color: Colors.white, size: 8)
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(Icons.circle, color: Colors.white, size: 8)
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(Icons.circle, color: Colors.white, size: 8)
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Icon(Icons.circle, color: Colors.white, size: 8)
+                        ],
+                      ),
+                    ])),
+            Row(children: [
+              Expanded(
+                child: Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child: Padding(
+                        padding: EdgeInsets.only(top: 87, bottom: 10.0),
+                        child: SvgPicture.asset('graphics/device-white.svg',
+                            semanticsLabel: 'device'))),
+              )
+            ]),
+          ],
+        ));
   }
 }
 
@@ -118,16 +211,13 @@ class _RandomWordsState extends State<RandomWords> {
 
           return Scaffold(
               appBar: AppBar(
-                title: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Icon(Icons.favorite, color: Colors.white),
-                      ),
-                      Text(" Saved Suggestions")
-                    ]
-                )
-              ),
+                  title: Row(children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Icon(Icons.favorite, color: Colors.white),
+                ),
+                Text(" Saved Suggestions")
+              ])),
               body: _saved.length > 0 ? savedList : noneSavedText);
         },
       ),
