@@ -118,7 +118,15 @@ class _RandomWordsState extends State<RandomWords> {
 
           return Scaffold(
               appBar: AppBar(
-                title: Text('❤ Saved Suggestions'),
+                title: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Icon(Icons.favorite, color: Colors.white),
+                      ),
+                      Text(" Saved Suggestions")
+                    ]
+                )
               ),
               body: _saved.length > 0 ? savedList : noneSavedText);
         },
